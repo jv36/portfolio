@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    container_name: portfolio_app
+    restart: unless-stopped
+    # Not published to the host — the Caddy instance from the other project on this
+    # VPS reaches this container over the shared external "edge" network instead.
+    expose:
+      - '3000'
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+    networks:
+      - edge
+
+networks:
+  edge:
+    external: true

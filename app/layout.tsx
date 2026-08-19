@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Inter, Merriweather } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { SiteBackground } from "@/components/site-background"
 import { cn } from "@/lib/utils";
 
 const merriweatherHeading = Merriweather({subsets:['latin'],variable:'--font-heading'});
@@ -24,8 +25,11 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, "font-sans", inter.variable, merriweatherHeading.variable)}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body suppressHydrationWarning>
+        <ThemeProvider>
+          <SiteBackground />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
