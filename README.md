@@ -1,27 +1,21 @@
-# Deploy Next.js to GitHub Pages
+# Next.js template
 
-This is a Next.js template which can be deployed to GitHub Pages as a static site.
+This is a Next.js template with shadcn/ui.
 
-## Deploying to GitHub Pages
+## Adding components
 
-1.  Create a new public GitHub repository
-2.  Push the starter code to the `main` branch
-3.  On GitHub, go to **Settings** > **Pages** > **Source**, and choose **GitHub Actions** as the source
-4.  Make a commit and push it to see the changes on GitHub Pages
-
-Congratulations! You should have a URL like:
+To add components to your app, run the following command:
 
 ```bash
-https://<github-user-name>.github.io/<github-project-name>/
+npx shadcn@latest add button
 ```
 
-For more information, see our [deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying/static-exports).
+This will place the ui components in the `components` directory.
 
-## Learn More
+## Using components
 
-To learn more about Next.js, take a look at the following resources:
+To use the components in your app, import them as follows:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```tsx
+import { Button } from "@/components/ui/button";
+```
