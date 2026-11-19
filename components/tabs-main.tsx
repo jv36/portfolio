@@ -63,6 +63,15 @@ export function TabsMain() {
                                 Buzz Controller
                             </a>
                         </Button>
+                        <Button variant="outline">
+                            <a
+                                href="https://futebolretro.joaovicente.dev"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Futebol Retro
+                            </a>
+                        </Button>
                     </CardContent>
                 </Card>
             </TabsContent>
