@@ -5,6 +5,7 @@ import path from "node:path"
 import {
   currentWeekStart,
   MAX_SONGS,
+  normalizeSpotifyUrl,
   normalizeWeekStart,
   type SongIssue,
   type SongPick,
@@ -77,6 +78,7 @@ function parseTrack(value: unknown): SongTrack | null {
     artworkUrl: artworkUrl ?? "",
     previewUrl,
     trackViewUrl,
+    spotifyUrl: normalizeSpotifyUrl(value.spotifyUrl),
   }
 }
 

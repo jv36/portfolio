@@ -8,6 +8,7 @@ export type SongTrack = {
   artworkUrl: string
   previewUrl: string | null
   trackViewUrl: string
+  spotifyUrl: string
 }
 
 export type SongPick = {
@@ -73,4 +74,37 @@ export function formatWeekStart(weekStart: string): string {
     year: "numeric",
     timeZone: "UTC",
   }).format(new Date(Date.UTC(year, month - 1, day)))
+}
+
+/** Normalizes a Spotify track URL, URI, or bare track ID. Returns "" if invalid. */
+export function normalizeSpotifyUrl(value: unknown): string {
+  if (typeof value !== "string") return ""
+  const input = value.trim()
+  if (!input) return ""
+
+  const uriMatch = /^spotify:track:([a-zA-Z0-9]+)$/.exec(input)
+  if (uriMatch) return `https://open.spotify.com/track/${uriMatch[1]}`
+
+  if (/^[a-zA-Z0-9]{22}$/.test(input)) {
+    return `https://open.spotify.com/track/${input}`
+  }
+
+  try {
+    const url = new URL(input)
+    if (url.protocol !== "https:") return ""
+    if (url.hostname !== "open.spotify.com") return ""
+    const match = /\/track\/([a-zA-Z0-9]+)/.exec(url.pathname)
+    return match ? `https://open.spotify.com/track/${match[1]}` : ""
+  } catch {
+    return ""
+  }
+}
+
+/** Falls back to a Spotify search when no direct track link is stored. */
+export function spotifyUrlForTrack(
+  track: Pick<SongTrack, "spotifyUrl" | "title" | "artist">
+): string {
+  if (track.spotifyUrl) return track.spotifyUrl
+  const query = [track.title, track.artist].filter(Boolean).join(" ")
+  return `https://open.spotify.com/search/${encodeURIComponent(query)}`
 }

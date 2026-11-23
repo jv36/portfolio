@@ -8,9 +8,8 @@ import { WeekArchive } from "@/components/songs/week-archive"
 import { getPublicSongsData } from "@/lib/songs"
 
 export const metadata: Metadata = {
-  title: "Songs of the week — João Vicente",
-  description:
-    "Five songs I have been listening to this week, with a note on each one.",
+  title: "SOTW / João Vicente",
+  description: "Five song recommendations every week.",
 }
 
 export default async function SongsPage() {
@@ -28,12 +27,12 @@ export default async function SongsPage() {
         >
           <ArrowLeft className="size-4" aria-hidden />
         </Link>
-        <h1 className="font-heading text-4xl font-semibold tracking-tight">
+        <h1 className="text-4xl font-semibold tracking-tight">
           Songs of the week
         </h1>
         <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
-          Five songs I have had on repeat, one per week. Press play for a thirty
-          second preview, or follow a title to open it in Apple Music.
+          I like music and recommending songs to people. So, here are five songs
+          each week.
         </p>
       </header>
 

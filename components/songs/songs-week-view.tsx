@@ -42,12 +42,9 @@ export function SongsWeekView({
     <section className={cn("flex flex-col gap-4", className)}>
       {showHeader ? (
         <header className="flex flex-col gap-1">
-          <p className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground uppercase">
-            Songs of the week
-          </p>
           <h2
             className={cn(
-              "font-heading font-semibold tracking-tight",
+              "font-semibold tracking-tight",
               compact ? "text-xl" : "text-3xl"
             )}
           >
@@ -92,13 +89,8 @@ export function SongsWeekView({
       )}
 
       <ol className={cn("flex flex-col", compact ? "gap-2" : "gap-3")}>
-        {week.songs.map((pick, index) => (
-          <SongPickCard
-            key={pick.id}
-            pick={pick}
-            index={index}
-            compact={compact}
-          />
+        {week.songs.map((pick) => (
+          <SongPickCard key={pick.id} pick={pick} compact={compact} />
         ))}
       </ol>
     </section>

@@ -170,7 +170,7 @@ export function SongsEditor({ initialWeeks }: { initialWeeks: SongWeek[] }) {
 
       <div className="flex flex-col gap-3">
         <div className="flex items-baseline justify-between">
-          <h2 className="font-heading text-lg font-semibold">The five picks</h2>
+          <h2 className="text-lg font-semibold">The five picks</h2>
           <span className="text-xs text-muted-foreground">
             {slots.filter((slot) => slot.track).length}/{MAX_SONGS} filled
           </span>
@@ -213,7 +213,7 @@ export function SongsEditor({ initialWeeks }: { initialWeeks: SongWeek[] }) {
       </div>
 
       <section className="flex flex-col gap-2">
-        <h2 className="font-heading text-lg font-semibold">Published weeks</h2>
+        <h2 className="text-lg font-semibold">Published weeks</h2>
         {weeks.length === 0 ? (
           <p className="text-sm text-muted-foreground">
             Nothing published yet. Add songs above and save your first week.
@@ -286,30 +286,53 @@ function EditorSlot({
       </div>
 
       {slot.track ? (
-        <div className="flex gap-3">
-          <div className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-muted ring-1 ring-foreground/5">
-            {slot.track.artworkUrl ? (
-              <Image
-                src={slot.track.artworkUrl}
-                alt={`${slot.track.title} cover`}
-                fill
-                sizes="112px"
-                className="object-cover"
-              />
-            ) : (
-              <div className="flex size-full items-center justify-center text-muted-foreground">
-                <Music2 className="size-5" aria-hidden />
-              </div>
-            )}
+        <div className="flex flex-col gap-2">
+          <div className="flex gap-3">
+            <div className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-muted ring-1 ring-foreground/5">
+              {slot.track.artworkUrl ? (
+                <Image
+                  src={slot.track.artworkUrl}
+                  alt={`${slot.track.title} cover`}
+                  fill
+                  sizes="112px"
+                  className="object-cover"
+                />
+              ) : (
+                <div className="flex size-full items-center justify-center text-muted-foreground">
+                  <Music2 className="size-5" aria-hidden />
+                </div>
+              )}
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-medium">{slot.track.title}</p>
+              <p className="truncate text-xs text-muted-foreground">
+                {slot.track.artist}
+                {slot.track.album ? ` · ${slot.track.album}` : ""}
+              </p>
+            </div>
+            <SongPreviewPlayer previewUrl={slot.track.previewUrl} />
           </div>
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-medium">{slot.track.title}</p>
-            <p className="truncate text-xs text-muted-foreground">
-              {slot.track.artist}
-              {slot.track.album ? ` · ${slot.track.album}` : ""}
-            </p>
-          </div>
-          <SongPreviewPlayer previewUrl={slot.track.previewUrl} />
+          <label className="flex flex-col gap-1 text-xs font-medium">
+            Spotify link{" "}
+            <span className="font-normal text-muted-foreground">
+              (optional)
+            </span>
+            <Input
+              value={slot.track.spotifyUrl}
+              onChange={(event) =>
+                onChange({
+                  track: slot.track
+                    ? { ...slot.track, spotifyUrl: event.target.value }
+                    : null,
+                })
+              }
+              placeholder="https://open.spotify.com/track/…"
+              className="h-8 text-xs"
+            />
+            <span className="text-[10px] font-normal text-muted-foreground">
+              Leave blank to link to a Spotify search.
+            </span>
+          </label>
         </div>
       ) : (
         <TrackSearch onSelect={(track) => onChange({ track })} />

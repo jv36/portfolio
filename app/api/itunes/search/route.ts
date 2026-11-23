@@ -46,6 +46,7 @@ function toTrack(track: ITunesTrack): SongTrack | null {
     artworkUrl: artworkUrl(track.artworkUrl100),
     previewUrl: httpsUrl(track.previewUrl),
     trackViewUrl,
+    spotifyUrl: "",
   }
 }
 

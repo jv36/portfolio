@@ -24,7 +24,6 @@ export function LoginForm({ configured }: { configured: boolean }) {
   return (
     <form action={formAction} className="flex flex-col gap-3">
       <label className="flex flex-col gap-1.5 text-sm font-medium">
-        Admin password
         <Input
           name="password"
           type="password"
@@ -47,7 +46,6 @@ export function LoginForm({ configured }: { configured: boolean }) {
         ) : (
           <LockKeyhole className="size-4" aria-hidden />
         )}
-        Sign in
       </Button>
     </form>
   )

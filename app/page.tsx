@@ -2,6 +2,13 @@ import Link from "next/link"
 
 import { TabsMain } from "@/components/tabs-main"
 import { buttonVariants } from "@/components/ui/button"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "João Vicente",
+  description:
+    "João Vicente, software engineer from Portugal.",
+}
 
 export default function Page() {
   return (

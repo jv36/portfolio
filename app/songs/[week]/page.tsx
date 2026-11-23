@@ -43,18 +43,14 @@ export default async function WeekPage({ params }: WeekPageProps) {
           <ArrowLeft className="size-3.5" aria-hidden />
           Songs of the week
         </Link>
-        <h1 className="font-heading text-3xl font-semibold tracking-tight">
+        <h1 className="text-3xl font-semibold tracking-tight">
           Week of {formatWeekStart(week.weekStart)}
         </h1>
       </header>
 
       <SongsWeekView week={week} />
 
-      <WeekArchive
-        weeks={weeks}
-        activeWeekStart={week.weekStart}
-        heading="Other weeks"
-      />
+      <WeekArchive weeks={weeks} activeWeekStart={week.weekStart} />
     </main>
   )
 }

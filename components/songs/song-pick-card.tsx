@@ -1,17 +1,16 @@
 import Image from "next/image"
-import { ArrowUpRight, Music2 } from "lucide-react"
+import { Music2 } from "lucide-react"
+import { siSpotify } from "simple-icons"
 
 import { SongPreviewPlayer } from "@/components/songs/song-preview-player"
-import type { SongPick } from "@/lib/songs-types"
+import { spotifyUrlForTrack, type SongPick } from "@/lib/songs-types"
 import { cn } from "@/lib/utils"
 
 export function SongPickCard({
   pick,
-  index,
   compact = false,
 }: {
   pick: SongPick
-  index: number
   compact?: boolean
 }) {
   return (
@@ -46,20 +45,21 @@ export function SongPickCard({
         <div className="min-w-0 flex-1">
           <div className="flex items-start gap-2">
             <div className="min-w-0 flex-1">
-              <p className="font-mono text-[10px] text-muted-foreground">
-                {String(index + 1).padStart(2, "0")}
-              </p>
               <a
-                href={pick.track.trackViewUrl}
+                href={spotifyUrlForTrack(pick.track)}
                 target="_blank"
                 rel="noopener noreferrer"
+                title="Open in Spotify"
                 className="group inline-flex max-w-full items-center gap-1 leading-snug font-medium hover:underline"
               >
                 <span className="truncate">{pick.track.title}</span>
-                <ArrowUpRight
-                  className="size-3 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                <svg
+                  viewBox="0 0 24 24"
                   aria-hidden
-                />
+                  className="size-3 shrink-0 fill-current text-muted-foreground transition-colors group-hover:text-foreground"
+                >
+                  <path d={siSpotify.path} />
+                </svg>
               </a>
               <p className="truncate text-xs text-muted-foreground">
                 {pick.track.artist}
