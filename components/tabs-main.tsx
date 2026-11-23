@@ -28,7 +28,7 @@ export function TabsMain() {
                     <CardHeader>
                         <CardTitle>About me</CardTitle>
                         <CardDescription>
-                            I am a software developer with focus on web development. I graduated in Informatics & Computing Engineering at FEUP and I am currently pursuing my Master's Degree in Software Engineering at FEUP.
+                            I am a software developer with focus on web development. I graduated in Informatics & Computing Engineering at FEUP and I am currently pursuing my Master&apos;s Degree in Software Engineering at FEUP.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="text-sm text-muted-foreground">

@@ -1,21 +1,45 @@
-# Next.js template
+# joaovicente.dev
 
-This is a Next.js template with shadcn/ui.
+Personal portfolio built with Next.js and shadcn/ui.
 
-## Adding components
+## Songs of the week
 
-To add components to your app, run the following command:
+- Public page: `/songs` (archive lives at `/songs/YYYY-MM-DD`)
+- Admin page: `/admin`
+
+The admin editor searches the public iTunes Search API, stores the selected
+tracks, artwork, preview URLs and your commentary. Weeks are kept as history, so
+older weekly picks stay available in the archive.
+
+### Configuration
+
+Create a `.env` file (see `.env.example`) with:
 
 ```bash
-npx shadcn@latest add button
+ADMIN_PASSWORD=choose-a-password
+SESSION_SECRET=a-long-random-string
 ```
 
-This will place the ui components in the `components` directory.
+`ADMIN_PASSWORD` enables the admin editor. `SESSION_SECRET` signs the admin
+session cookie; if it is omitted, `ADMIN_PASSWORD` is used as the signing key.
 
-## Using components
+### Data
 
-To use the components in your app, import them as follows:
+In production the picks are stored in
+`$SONGS_DATA_DIR/songs-of-the-week.json` (Docker uses the `portfolio_data`
+volume mounted at `/data`). Locally it defaults to `./data/songs-of-the-week.json`.
 
-```tsx
-import { Button } from "@/components/ui/button";
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Useful checks:
+
+```bash
+npm run typecheck
+npm run lint
+npm run build
 ```

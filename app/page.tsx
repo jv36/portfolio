@@ -1,4 +1,7 @@
+import Link from "next/link"
+
 import { TabsMain } from "@/components/tabs-main"
+import { buttonVariants } from "@/components/ui/button"
 
 export default function Page() {
   return (
@@ -8,6 +11,15 @@ export default function Page() {
           <h1 className="text-4xl font-bold">João Vicente</h1>
         </div>
         <TabsMain />
+        <Link
+          href="/songs"
+          className={buttonVariants({
+            variant: "outline",
+            className: "w-full",
+          })}
+        >
+          Songs of the week
+        </Link>
       </div>
     </div>
   )
